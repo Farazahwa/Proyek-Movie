@@ -227,4 +227,4 @@ __pycache__/
 Thumbs.db
 
 # Visual Studio Code Files
-.vs/ 
+.vscode/
