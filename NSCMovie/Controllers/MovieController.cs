@@ -15,5 +15,10 @@ namespace NSCMovie.Controllers
         {
             return View();
         }
+
+        public IActionResult MovieOne()
+        {
+            return View();
+        }
     }
 }
