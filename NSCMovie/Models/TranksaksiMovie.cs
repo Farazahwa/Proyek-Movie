@@ -9,5 +9,6 @@ namespace TranksaksiMovie.Models
         public int MovieId { get; set; }
         public int TicketAmount { get; set; }
         public decimal Price { get; set; }
+        public DateTime TransactionDate { get; set; }
     }
 }
