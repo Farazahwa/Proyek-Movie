@@ -21,7 +21,7 @@ namespace NSCMovie.Controllers
 
         public IActionResult Index()
         {
-            return View(_context.Movies.ToList());
+            return View();
         }
 
         public IActionResult MovieOne()

@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Buyer.Models
+namespace NSCMovie.Models
 {
     public class Buyer
     {

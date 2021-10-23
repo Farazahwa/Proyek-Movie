@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace TranksaksiMovie.Models
+namespace NSCMovie.Models
 {
     public class TranksaksiMovie
     {

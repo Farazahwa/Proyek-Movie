@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Transaction.Models
+namespace NSCMovie.Models
 {
     public class Transaction
     {
