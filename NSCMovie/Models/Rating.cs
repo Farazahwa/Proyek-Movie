@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace NSCMovie.Models
@@ -7,5 +8,7 @@ namespace NSCMovie.Models
     {
         public int Id { get; set; }
         public string Rating { get; set; }
+
+        public List<Movie> Movies { get; set; }
     }
 }
