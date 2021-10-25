@@ -1,10 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-<<<<<<< HEAD:NSCMovie/Models/NSCMovie.cs
-using Microsoft.AspNetCore.Mvc.Rendering;
-=======
->>>>>>> c2a6a548f094e656c07bcace38908e4a2a0db2f8:NSCMovie/Models/Movie.cs
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NSCMovie.Models
