@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NSCMovie.Models;
 using System.Text.Encodings.Web;
-using MvcMovie.Data;
+using NSCMovie.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace NSCMovie.Controllers
 {
