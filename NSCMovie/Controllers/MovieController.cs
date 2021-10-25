@@ -10,17 +10,19 @@ using System.Text.Encodings.Web;
 using NSCMovie.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Identity;
 
 namespace NSCMovie.Controllers
 {
     public class MovieController : Controller
     {
+        private UserManager<Buyer> _userManager;
         private NSCMovieDbContext _context;
-        public MovieController(NSCMovieDbContext context)
+        public MovieController(NSCMovieDbContext context, UserManager<Buyer> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
-
         public IActionResult Index()
         {
             return View();
@@ -30,5 +32,6 @@ namespace NSCMovie.Controllers
         {
             return View();
         }
+        
     }
 }

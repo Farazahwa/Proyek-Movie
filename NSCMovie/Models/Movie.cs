@@ -13,7 +13,8 @@ namespace NSCMovie.Models
         [DataType (DataType.Currency)]
         [Column (TypeName = "decimal(18,2)")]   
         public int Price { get; set; }
-        public Rank RatingId { get; set; }
+        public int RatingId{ get; set; }
+        public Rank Rating { get; set; }
         
         [DataType(DataType.Time)]
         public DateTime Schedule { get; set; }

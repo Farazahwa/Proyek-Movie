@@ -11,6 +11,8 @@ using Microsoft.Extensions.Hosting;
 using NSCMovie.Data;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql;
+using NSCMovie.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace NSCMovie
 {
@@ -33,6 +35,11 @@ namespace NSCMovie
               var serverVersion = new MariaDbServerVersion(new Version(10, 6, 4));
               option.UseMySql(connectionString, serverVersion);
             });
+            services
+                .AddDefaultIdentity<Buyer>()
+                .AddEntityFrameworkStores<NSCMovieDbContext>()
+                .AddDefaultTokenProviders();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +60,7 @@ namespace NSCMovie
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -60,6 +68,7 @@ namespace NSCMovie
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

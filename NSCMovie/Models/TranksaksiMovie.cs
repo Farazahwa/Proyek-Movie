@@ -9,8 +9,10 @@ namespace NSCMovie.Models
     public class TranksaksiMovie
     {
         public int Id { get; set; }
-        public Movie MovieId { get; set; }
-        public Transaction TransactionId { get; set; }
+        public int MovieId { get; set; }
+        public Movie Movie { get; set; }
+        public int TransactionId { get; set; }
+        public Transaction Tradnsaction { get; set; }
         public int TicketAmount { get; set; }
         public decimal Price { get; set; }
         public DateTime TransactionDate { get; set; }
