@@ -1,15 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace NSCMovie.Models
 {
-    public class Buyer
+    public class Buyer : IdentityUser
     {
-        public int Id { get; set; }
-        public int Username { get; set; }
-        public int Password { get; set; }
-
         public List<Transaction> Transactions { get; set; }
     }
 }
