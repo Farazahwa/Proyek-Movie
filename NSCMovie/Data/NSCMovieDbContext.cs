@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using NSCMovie.Models;
-namespace MvcMovie.Data
+namespace NSCMovie.Data
 {
     public class NSCMovieDbContext : DbContext
     {
