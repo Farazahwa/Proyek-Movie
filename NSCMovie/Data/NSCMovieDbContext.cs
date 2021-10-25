@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using NSCMovie.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 namespace MvcMovie.Data
 {
-    public class NSCMovieDbContext : DbContext
+    public class NSCMovieDbContext : IdentityDbContext<Buyer>
     {
        public NSCMovieDbContext (DbContextOptions<NSCMovieDbContext> options) : base(options)
        {}
@@ -10,6 +12,5 @@ namespace MvcMovie.Data
        public DbSet<TranksaksiMovie> TranksaksiMovies { get; set; }
        public DbSet<Transaction> Transactions { get; set; }
        public DbSet<Rank> Ranks { get; set; }
-       public DbSet<Buyer> Buyers { get; set; }
     }
 }
