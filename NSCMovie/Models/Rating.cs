@@ -11,6 +11,6 @@ namespace NSCMovie.Models
         public int Id { get; set; }
         public string Rating { get; set; }
 
-        public List<Movie> Movies { get; set; }
+        public virtual List<Movie> Movies { get; set; }
     }
 }
