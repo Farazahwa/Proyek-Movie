@@ -14,6 +14,6 @@ namespace NSCMovie.Models
         public DateTime Date { get; set; }
         public string Payment { get; set; }
 
-        public virtual List<Transaction> TransactionId { get; set; }
+        public virtual List<TranksaksiMovie> TranksaksiMovies { get; set; }
     }
 }

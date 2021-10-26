@@ -16,6 +16,5 @@ namespace NSCMovie.Models
         public int TicketAmount { get; set; }
         public decimal Price { get; set; }
         public DateTime TransactionDate { get; set; }
-        public List<TranksaksiMovie> Transactions { get; set; }
     }
 }

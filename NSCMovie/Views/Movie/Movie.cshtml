@@ -1,10 +1,9 @@
+@model NSCMovie.Models.Movie
 @{
     ViewData["Title"] = "Movie";
 }
 
-<<<<<<< HEAD
 <h1>Ladies and Gentlemen this is our order view</h1>
-=======
 <head>
     <style>
         body{
@@ -24,6 +23,11 @@
     <div class="text-center">
         <img src="https://cdn.cgv.id/uploads/movie/compressed/21012300.jpg" alt="Posters" width="200" height="300">
     </div>
-
+    <h4>Items</h4>
+    <ul>
+    @foreach (var item in Model.TranksaksiMovies)
+    {
+        <li>@item.MovieId</li>
+    }
+    </ul>
 </body>
->>>>>>> c2a6a548f094e656c07bcace38908e4a2a0db2f8

@@ -9,7 +9,7 @@ using NSCMovie.Data;
 namespace NSCMovie.Migrations
 {
     [DbContext(typeof(NSCMovieDbContext))]
-    [Migration("20211025075616_Initial")]
+    [Migration("20211026052831_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -94,10 +94,12 @@ namespace NSCMovie.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("longtext");
@@ -134,10 +136,12 @@ namespace NSCMovie.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("longtext");
@@ -295,15 +299,12 @@ namespace NSCMovie.Migrations
                     b.Property<string>("Payment")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("PenggunaId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PenggunaId1")
+                    b.Property<string>("PenggunaId")
                         .HasColumnType("varchar(255)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PenggunaId1");
+                    b.HasIndex("PenggunaId");
 
                     b.ToTable("Transactions");
                 });
@@ -373,27 +374,27 @@ namespace NSCMovie.Migrations
             modelBuilder.Entity("NSCMovie.Models.TranksaksiMovie", b =>
                 {
                     b.HasOne("NSCMovie.Models.Movie", "Movie")
-                        .WithMany("MovieId")
+                        .WithMany("TranksaksiMovies")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NSCMovie.Models.Transaction", "Tradnsaction")
-                        .WithMany("TransactionId")
+                    b.HasOne("NSCMovie.Models.Transaction", "Transaction")
+                        .WithMany("TranksaksiMovies")
                         .HasForeignKey("TransactionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Movie");
 
-                    b.Navigation("Tradnsaction");
+                    b.Navigation("Transaction");
                 });
 
             modelBuilder.Entity("NSCMovie.Models.Transaction", b =>
                 {
                     b.HasOne("NSCMovie.Models.Buyer", "Pengguna")
                         .WithMany("Transactions")
-                        .HasForeignKey("PenggunaId1");
+                        .HasForeignKey("PenggunaId");
 
                     b.Navigation("Pengguna");
                 });
@@ -405,7 +406,7 @@ namespace NSCMovie.Migrations
 
             modelBuilder.Entity("NSCMovie.Models.Movie", b =>
                 {
-                    b.Navigation("MovieId");
+                    b.Navigation("TranksaksiMovies");
                 });
 
             modelBuilder.Entity("NSCMovie.Models.Rank", b =>
@@ -415,7 +416,7 @@ namespace NSCMovie.Migrations
 
             modelBuilder.Entity("NSCMovie.Models.Transaction", b =>
                 {
-                    b.Navigation("TransactionId");
+                    b.Navigation("TranksaksiMovies");
                 });
 #pragma warning restore 612, 618
         }
