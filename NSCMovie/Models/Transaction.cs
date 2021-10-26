@@ -9,11 +9,11 @@ namespace NSCMovie.Models
     public class Transaction
     {
         public int Id { get; set; }
-        public int PenggunaId { get; set; }
-        public Buyer Pengguna { get; set; }
+        public string PenggunaId { get; set; }
+        public virtual Buyer Pengguna { get; set; }
         public DateTime Date { get; set; }
         public string Payment { get; set; }
 
-        public List<TranksaksiMovie> TransactionId { get; set; }
+        public List<Transaction> TransactionId { get; set; }
     }
 }

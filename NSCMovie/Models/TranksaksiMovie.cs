@@ -10,11 +10,12 @@ namespace NSCMovie.Models
     {
         public int Id { get; set; }
         public int MovieId { get; set; }
-        public Movie Movie { get; set; }
+        public virtual Movie Movie { get; set; }
         public int TransactionId { get; set; }
-        public Transaction Tradnsaction { get; set; }
+        public virtual Transaction Transaction { get; set; }
         public int TicketAmount { get; set; }
         public decimal Price { get; set; }
         public DateTime TransactionDate { get; set; }
+        public List<TranksaksiMovie> Transactions { get; set; }
     }
 }

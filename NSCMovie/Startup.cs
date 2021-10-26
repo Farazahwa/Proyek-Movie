@@ -34,7 +34,7 @@ namespace NSCMovie
               var connectionString = Configuration.GetConnectionString("MovieApp");
               var serverVersion = new MariaDbServerVersion(new Version(10, 6, 4));
               option.UseMySql(connectionString, serverVersion);
-              options.UseLazyLoadingProxies();
+              option.UseLazyLoadingProxies();
             });
             services
                 .AddDefaultIdentity<Buyer>()
