@@ -24,13 +24,23 @@ namespace NSCMovie.Controllers
             _userManager = userManager;
         }
         public IActionResult Index()
-        {
-            return View();
+        {                    
+            var movies = _context.Movies.ToList();
+            return View(movies);
         }
 
-        public IActionResult Movie()
+        public IActionResult Movie(int? id)
         {
-            return View();
+            if(id == null)
+            {
+                return NotFound();                
+            }
+            var movie = _context.Movies.Find(id);
+            if(movie == null)
+            {
+                return NotFound();
+            }
+            return View(movie);
         }
         
     }

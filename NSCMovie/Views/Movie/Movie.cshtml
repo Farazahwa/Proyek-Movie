@@ -3,7 +3,7 @@
     ViewData["Title"] = "Movie";
 }
 
-<h1>Ladies and Gentlemen this is our order view</h1>
+
 <head>
     <style>
         body{
@@ -20,14 +20,28 @@
     </style>
 </head>
 <body>
-    <div class="text-center">
-        <img src="https://cdn.cgv.id/uploads/movie/compressed/21012300.jpg" alt="Posters" width="200" height="300">
+    <div class="text-left">
+        <img src="https://cdn.cgv.id/uploads/movie/compressed/21012300.jpg" alt="Posters" width="200" height="300">        
     </div>
-    <h4>Items</h4>
-    <ul>
-    @foreach (var item in Model.TranksaksiMovies)
-    {
-        <li>@item.MovieId</li>
-    }
-    </ul>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>@Html.DisplayFor(model => Model.Title)</th>                                                    
+            </tr>
+        </thead>        
+        <tbody>
+            <tr>
+                <td>@Html.DisplayNameFor(model => Model.Schedule)</td>
+                <td>@Html.DisplayFor(model => Model.Schedule)</td>                                   
+            </tr>  
+            <tr>
+                <td>@Html.DisplayNameFor(model => Model.Rating)</td>
+                <td>@Html.DisplayFor(model => Model.Rating)</td>                                            
+            </tr> 
+            <tr>
+                <td>@Html.DisplayNameFor(model => Model.Room)</td>
+                <td>@Html.DisplayFor(model => Model.Room)</td>                                                                  
+            </tr>
+        </tbody>
+    </table>
 </body>
