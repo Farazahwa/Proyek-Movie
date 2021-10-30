@@ -9,6 +9,7 @@ namespace NSCMovie.Models
 {
     public class Buyer : IdentityUser
     {
+        public string Avatar { get; set; }
         public virtual List<Transaction> Transactions { get; set; }
     }
 }
