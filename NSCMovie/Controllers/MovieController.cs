@@ -23,10 +23,29 @@ namespace NSCMovie.Controllers
             _context = context;
             _userManager = userManager;
         }
-        public IActionResult Index()
-        {                    
-            var movies = _context.Movies.ToList();
-            return View(movies);
+
+        public async Task<IActionResult> Index(string movieDays)
+        {
+            IQueryable<string> daysQuery = from m in _context.Movies
+                                    orderby m.Days
+                                    select m.Days;
+
+            var movies = from m in _context.Movies
+                        where m.Days == DateTime.Today.DayOfWeek.ToString()
+                        select m;
+            
+            if (!string.IsNullOrEmpty(movieDays))
+            {
+                movies = movies.Where(x => x.Days == movieDays);
+            }
+
+            var movieDaysVM = new Schedule
+            {
+                Days = new SelectList(await daysQuery.Distinct()
+                .ToListAsync()),
+                Movies = await movies.ToListAsync()
+           };
+            return View(movieDaysVM);
         }
 
         public IActionResult Movie(int? id)

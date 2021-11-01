@@ -20,6 +20,7 @@ namespace NSCMovie.Models
         public DateTime Schedule { get; set; }
         public int Room { get; set; }
         
-        public virtual List<TranksaksiMovie> TranksaksiMovies { get; set; }    
+        public virtual List<TranksaksiMovie> TranksaksiMovies { get; set; }
+        public string Days { get; set; }
     }
 }
