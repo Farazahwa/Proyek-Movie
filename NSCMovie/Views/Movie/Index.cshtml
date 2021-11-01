@@ -1,4 +1,4 @@
-@model IEnumerable<Movie>
+@model Schedule
 @{
     ViewData["Title"] = "Movie Page";
 }
@@ -25,36 +25,18 @@
         </div>
         <div class="text-left mt-5">
             <table class="table" >
-                <tr>
-                    <td>                
-                        <img src="https://cdn.cgv.id/uploads/movie/compressed/21012300.jpg" alt="Posters" width="130" height="200">
-                    </td>
-                    <td>
-                        <a style="Arial" asp-controller="Movie" asp-action="Movie" asp-route-id="1">No Time To Die</a>
-                        <p class="mt-4">
-                            James Bond is enjoying a tranquil life in Jamaica after leaving active service. However, his peace 
-                        is short-lived as his old CIA friend, Felix Leiter, shows up and asks for help. The mission to rescue 
-                        a kidnapped scientist turns out to be far more treacherous than expected, leading Bond on the trail of 
-                        a mysterious villain who's armed with a dangerous new technology.
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>                
-                        <img src="https://upload.wikimedia.org/wikipedia/id/thumb/1/1f/Poster_film_Nussa.jpeg/220px-Poster_film_Nussa.jpeg" alt="Posters" width="130" height="200">
-                    </td>
-                    <td>
-                        <a style="Arial" asp-controller="Movie" asp-action="Movie">Nussa</a>
-                        <p class="mt-4">
-                            Nussa, the defending champion of the science fair, wants to win back the race with her designed 
-                        rocket accompanied by Abba. However, his rocket experiment has failed, and his friends turn to 
-                        pay attention to the sophistication of Jonni's rocket, the new kid at school and a competition 
-                        rival for him. Faced with a superior rival, as well as the news that Abba could not return home 
-                        made Nussa very great. Can Nussa realize his dream of becoming a champion again in the midst of 
-                        a situation like this?.
-                        </p>
-                    </td>
-                </tr>
+                @foreach (var item in Model.Movies)
+                {
+                    <tr>
+                        <td>                
+                            <img src="@item.Image" alt="Posters" width="130" height="200">
+                        </td>
+                        <td>
+                            <a style="Arial" asp-controller="Movie" asp-action="Movie" asp-route-id="1">@item.Title</a>
+                            <p class="mt-4">@item.Definition</p>
+                        </td>
+                    </tr>                    
+                }
             </table>
         </div>
     </header>

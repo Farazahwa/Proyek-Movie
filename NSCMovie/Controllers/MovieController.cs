@@ -33,11 +33,6 @@ namespace NSCMovie.Controllers
             var movies = from m in _context.Movies
                         where m.Days == DateTime.Today.DayOfWeek.ToString()
                         select m;
-            
-            if (!string.IsNullOrEmpty(movieDays))
-            {
-                movies = movies.Where(x => x.Days == movieDays);
-            }
 
             var movieDaysVM = new Schedule
             {
@@ -61,6 +56,10 @@ namespace NSCMovie.Controllers
             }
             return View(movie);
         }
-        
+
+        public IActionResult Transaction(int? id)
+        {        
+            return RedirectToAction("Index");
+        }
     }
 }
