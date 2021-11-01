@@ -19,8 +19,9 @@ namespace NSCMovie.Models
         [DataType(DataType.Time)]
         public DateTime Schedule { get; set; }
         public int Room { get; set; }
-        
-        public virtual List<TranksaksiMovie> TranksaksiMovies { get; set; }
         public string Days { get; set; }
+        public string Definition { get; set; }
+        public string Image { get; set; }
+        public virtual List<TranksaksiMovie> TranksaksiMovies { get; set; }
     }
 }
