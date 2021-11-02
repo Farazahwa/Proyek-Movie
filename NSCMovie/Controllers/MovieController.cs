@@ -30,8 +30,9 @@ namespace NSCMovie.Controllers
                                     orderby m.Days
                                     select m.Days;
 
+            var today = DateTime.Today.DayOfWeek.ToString();
             var movies = from m in _context.Movies
-                        where m.Days == DateTime.Today.DayOfWeek.ToString()
+                        where m.Days == today
                         select m;
 
             var movieDaysVM = new Schedule
