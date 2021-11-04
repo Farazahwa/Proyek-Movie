@@ -9,8 +9,7 @@ using Microsoft.Extensions.Logging;
 using NSCMovie.Models;
 
 namespace NSCMovie.Controllers
-{
-    [Authorize]
+{        
     public class HomeController : Controller
     {
         
