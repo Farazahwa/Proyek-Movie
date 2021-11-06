@@ -1,0 +1,40 @@
+@model NSCMovie.Models.TranksaksiMovie
+@{
+    ViewData["Title"] = "Create";
+}
+
+<head>
+    <style>
+        body{
+            background-color: #C0C0C0;
+        }
+        header{            
+            color: #000000;            
+        }        
+        nav{
+            background-color: #808080;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+            color: #000000;
+        }                
+    </style>
+</head>
+<body>
+    <div>
+        <h2 class="display-4">Transaction</h2>
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>            
+            <div class="form-group">
+                <label asp-for="TicketAmount" class="control-label"></label>
+                <input asp-for="TicketAmount" class="form-control" />
+                <span asp-validation-for="TicketAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn" />
+            </div>
+        </form>
+    </div>
+    <div>
+        <a asp-controller="Movie" asp-action="Index">Back</a>
+    </div>
+</body>
+

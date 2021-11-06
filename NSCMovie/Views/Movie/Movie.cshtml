@@ -46,7 +46,7 @@
     </table>
     <div class="text-right">
         <h6>@Html.DisplayFor(model => Model.Price)</h6>
-        <form asp-controller="Movie" asp-action="Transaction" asp-route-id="@Model.Id">
+        <form asp-controller="Transaction" asp-action="Create">
             <div class="form-group">
                     <button type="submit" class="btn-primary"> Yes </button>
                     <a asp-controller="Movie" asp-action="index"> Back </a>
