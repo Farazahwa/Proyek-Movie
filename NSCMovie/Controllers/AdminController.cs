@@ -11,7 +11,6 @@ using System.Text.Encodings.Web;
 using NSCMovie.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Identity;
 using System.IO;
 using Microsoft.AspNetCore.StaticFiles;
 
@@ -20,9 +19,11 @@ namespace NSCMovie.Controllers
     public class AdminController : Controller
     {
         private NSCMovieDbContext _context;
-         public AdminController(NSCMovieDbContext context)
+        private UserManager<Buyer> _userManager;
+         public AdminController(NSCMovieDbContext context, UserManager<Buyer> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Movies/Delete/5
