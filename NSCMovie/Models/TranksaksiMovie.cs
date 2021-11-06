@@ -13,6 +13,8 @@ namespace NSCMovie.Models
         public virtual Movie Movie { get; set; }
         public int TransactionId { get; set; }
         public virtual Transaction Transaction { get; set; }
+
+        [Required]
         public int TicketAmount { get; set; }
         public decimal Price { get; set; }
         public DateTime TransactionDate { get; set; }
