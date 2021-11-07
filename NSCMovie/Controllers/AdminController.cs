@@ -106,5 +106,23 @@ namespace NSCMovie.Controllers
         {
             throw new NotImplementedException();
         }
+
+        // GET: Movies/Create/5
+        public async Task<IActionResult> Create(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var movie = await _context.Movies.FindAsync(id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+            return View(movie);
+        }
+
+        
     }
 }
