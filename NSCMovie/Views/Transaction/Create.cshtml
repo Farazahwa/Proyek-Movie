@@ -21,7 +21,7 @@
 <body>
     <div>
         <h2 class="display-4">Transaction</h2>
-        <form asp-action="Create">
+        <form asp-action="Create" asp-route-id="@Model.Id">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>            
             <div class="form-group">
                 <label asp-for="TicketAmount" class="control-label"></label>
