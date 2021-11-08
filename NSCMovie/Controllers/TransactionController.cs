@@ -26,19 +26,20 @@ namespace NSCMovie.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
-            return View();
+            var MovieTransactionVM = new MovieTransactionViewModel
+            {
+                Movie = _context.Movies.Find(id),
+                TranksaksiMovie = _context.TranksaksiMovies.Find(id)
+            };
+            return View(MovieTransactionVM);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id, TicketAmount")] TranksaksiMovie movieTransaction, int? id)
-        {
-            if(id == null)
-            {
-                return NotFound();
-            }
+        public IActionResult Create([Bind("Id, TicketAmount")] TranksaksiMovie movieTransaction, int id)
+        {            
             var dataMovie = _context.Movies.Find(id);
             if(!ModelState.IsValid)
             {
@@ -52,7 +53,8 @@ namespace NSCMovie.Controllers
             };
             var addTransaction = new TranksaksiMovie()
             {
-                Price = dataMovie.Price,                                
+                Price = dataMovie.Price,             
+                MovieId = id,                   
             };
             
             transactions.Add(addTransaction);
