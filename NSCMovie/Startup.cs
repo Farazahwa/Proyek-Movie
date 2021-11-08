@@ -31,7 +31,7 @@ namespace NSCMovie
 
             services.AddDbContext<NSCMovieDbContext>(option =>
             {
-              var connectionString = Configuration.GetConnectionString("MovieApp");
+              var connectionString = Configuration["ConnectionStrings:MovieApp"];
               var serverVersion = new MariaDbServerVersion(new Version(10, 6, 4));
               option.UseMySql(connectionString, serverVersion);
               option.UseLazyLoadingProxies();
@@ -56,6 +56,8 @@ namespace NSCMovie
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseStatusCodePages();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
