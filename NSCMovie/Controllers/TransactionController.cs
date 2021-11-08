@@ -33,22 +33,35 @@ namespace NSCMovie.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id, Title, ReleaseDate, Genre, Price, Rating")] Movie movie)
+        public IActionResult Create([Bind("Id, TicketAmount")] TranksaksiMovie movieTransaction, int? id)
         {
-            if(ModelState.IsValid)
+            if(id == null)
             {
-                try
-                {
-                    _context.Movies.Add(movie);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateException)
-                {
-                    throw;
-                }
-                return RedirectToPage("index");
+                return NotFound();
             }
-            return View();
+            var dataMovie = _context.Movies.Find(id);
+            if(!ModelState.IsValid)
+            {
+                return NotFound();
+            }            
+
+            var transactions = new List<TranksaksiMovie>();
+            var newTransaction = new Transaction()
+            {
+                Date = DateTime.UtcNow,                                                                  
+            };
+            var addTransaction = new TranksaksiMovie()
+            {
+                Price = dataMovie.Price,                                
+            };
+            
+            transactions.Add(addTransaction);
+            transactions.Add(movieTransaction);
+            newTransaction.TranksaksiMovies = transactions;
+
+            _context.Transactions.Add(newTransaction);
+            _context.SaveChanges();            
+            return RedirectToAction("Movie", "MovieController");
         }
     }
 }

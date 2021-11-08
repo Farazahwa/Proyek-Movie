@@ -21,7 +21,7 @@
 </head>
 <body>
     <div class="text-left">
-        <img src="https://cdn.cgv.id/uploads/movie/compressed/21012300.jpg" alt="Posters" width="200" height="300">        
+        <img src="@Model.Image" alt="Posters" width="200" height="300">        
     </div>
     <table class="table table-hover">
         <thead>
@@ -46,7 +46,7 @@
     </table>
     <div class="text-right">
         <h6>@Html.DisplayFor(model => Model.Price)</h6>
-        <form asp-controller="Transaction" asp-action="Create">
+        <form asp-controller="Transaction" asp-action="Create" method="get">
             <div class="form-group">
                     <button type="submit" class="btn-primary"> Yes </button>
                     <a asp-controller="Movie" asp-action="index"> Back </a>
