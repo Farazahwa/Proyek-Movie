@@ -26,6 +26,26 @@ namespace NSCMovie.Controllers
             _userManager = userManager;
         }
 
+        public async Task<IActionResult> Index(string movieDays)
+        {
+            IQueryable<string> daysQuery = from m in _context.Movies
+                                    orderby m.Days
+                                    select m.Days;
+
+            var today = DateTime.Today.DayOfWeek.ToString();
+            var movies = from m in _context.Movies
+                        where m.Days == today
+                        select m;
+
+            var movieDaysVM = new Schedule
+            {
+                Days = new SelectList(await daysQuery.Distinct()
+                .ToListAsync()),
+                Movies = await movies.ToListAsync()
+           };
+            return View(movieDaysVM);
+        }
+        
         // GET: Movies/Delete/5
        public async Task<IActionResult> Delete(int? id)
        {

@@ -37,7 +37,7 @@ namespace NSCMovie.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind(Prefix = "TranksaksiMovie")] TranksaksiMovie movieTransaction, int id)
+        public async Task<IActionResult> Create([Bind(Prefix = "TranksaksiMovie")] AddTransactionViewModel movieTransaction, int id)
         {            
             var dataMovie = _context.Movies.Find(id);            
             var userId = _userManager.GetUserId(User);
@@ -48,7 +48,9 @@ namespace NSCMovie.Controllers
             var transactions = new List<TranksaksiMovie>();
             var newTransaction = new Transaction()
             {
-                Date = DateTime.UtcNow,                                             
+                Date = DateTime.UtcNow,         
+                Payment = movieTransaction.Payment,                                    
+                PenggunaId = userId,
             };
             var addTransaction = new TranksaksiMovie()
             {                
@@ -56,14 +58,16 @@ namespace NSCMovie.Controllers
                 MovieId = id, 
                 Transaction = newTransaction,
                 TicketAmount = movieTransaction.TicketAmount,                                
+                TransactionDate = DateTime.UtcNow,
+                Time = movieTransaction.Time,
             };
             
             transactions.Add(addTransaction);            
             newTransaction.TranksaksiMovies = transactions;
 
             _context.Transactions.Add(newTransaction);
-            _context.SaveChanges();            
-            return RedirectToAction("Movie", "MovieController");
+            await _context.SaveChangesAsync();            
+            return RedirectToAction("Index", "Movie", "movieDays");
         }
     }
 }
