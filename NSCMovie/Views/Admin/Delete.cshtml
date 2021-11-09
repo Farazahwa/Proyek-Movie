@@ -1,0 +1,64 @@
+@model NSCMovie.Models.Movie
+@{
+    ViewData["Title"] = "Movie App";
+}
+
+<head>
+    <style>
+        body{
+            background-color: #C0C0C0;
+        }
+        header{            
+            color: #000000;            
+        }        
+        nav{
+            background-color: #808080;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+            color: #000000;
+        }                
+    </style>
+</head>
+<body>
+    <div class="text-left mt-5">
+            <table class="table" >                                
+                <tr>
+                    <td>                
+                        <img src="@Model.Image" alt="Posters" width="130" height="200">
+                    </td>
+                    <td>
+                        <p>@Html.DisplayFor(x => x.Title)</p>
+                        <p class="mt-4">@Html.DisplayFor(x => x.Definition)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(x => x.Price)</td>
+                    <td>@Html.DisplayFor(x => x.Price)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(x => x.Schedule)</td>
+                    <td>@Html.DisplayFor(x => x.Schedule)</td>                    
+                </tr>                                    
+                <tr>
+                    <td>@Html.DisplayNameFor(x => x.Days)</td>
+                    <td>@Html.DisplayFor(x => x.Days)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(x => x.Room)</td>
+                    <td>@Html.DisplayFor(x => x.Room)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(x => x.RatingId)</td>
+                    <td>@Html.DisplayFor(x => x.RatingId)</td>
+                </tr>
+            </table>
+
+    <div>
+        <p>Do you want to delete this Movie</p>
+        <form asp-controller="Movie" asp-action="DeleteConfirmed" asp-route-id="@Model.Id">
+            <div class="form-group">
+                    <button type="submit" class="btn-primary"> Yes </button>
+                    <a asp-controller="Movie" asp-action="index"> Back </a>
+            </div>        
+        </form>
+    </div>
+</body>

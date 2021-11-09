@@ -1,0 +1,50 @@
+@model Schedule
+@{
+    ViewData["Title"] = "Movie Page";
+}
+
+<head>
+    <style>
+        body{
+            background-color: #C0C0C0;
+        }
+        header{            
+            color: #000000;            
+        }        
+        nav{
+            background-color: #808080;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+            color: #000000;
+        }                
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <p class="text-center" style="font-family:Bahnschrift SemiBold; font-size:160%;"><b> MOVIE PAGE </b></p>            
+        </div>
+        <div>
+            <a asp-controller="Admin" asp-action="Create">Create</a>
+        </div>
+        <div class="text-left mt-5">
+            <table class="table" >
+                @foreach (var item in Model.Movies)
+                {
+                    <tr>
+                        <td>                
+                            <img src="@item.Image" alt="Posters" width="130" height="200">
+                        </td>
+                        <td>
+                            <a style="Arial" asp-controller="Movie" asp-action="Movie" asp-route-id="1">@item.Title</a>
+                            <p class="mt-4">@item.Definition</p>
+                        </td>
+                        <td>
+                            <a asp-controller="Admin" asp-action="Edit" asp-route-id="@item.Id">| Edit |</a>
+                            <a asp-controller="Admin" asp-action="Delete" asp-route-id="@item.Id">Delete |</a>
+                        </td>
+                    </tr>                    
+                }
+            </table>
+        </div>
+    </header>
+</body>

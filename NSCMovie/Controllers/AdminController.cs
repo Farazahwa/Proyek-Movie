@@ -117,7 +117,7 @@ namespace NSCMovie.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             return View(movie);
         }
@@ -128,30 +128,15 @@ namespace NSCMovie.Controllers
         }
 
         // GET: Movies/Create/5
-        public async Task<IActionResult> Create(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var movie = await _context.Movies.FindAsync(id);
-            if (movie == null)
-            {
-                return NotFound();
-            }
-            return View(movie);
+        public IActionResult Create()
+        {        
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int id, [Bind("Id,Days,Definition,Image,Price,RatingId,Room,Schedule,Title")] Movie movie)
+        public async Task<IActionResult> Create([Bind("Id,Days,Definition,Image,Price,RatingId,Room,Schedule,Title")] Movie movie)
         {
-            if (id != movie.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
@@ -161,18 +146,11 @@ namespace NSCMovie.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MovieExists(movie.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    throw;
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
-            return View(movie);
+            return View();
         }
     }
 }
