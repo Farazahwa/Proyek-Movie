@@ -29,7 +29,12 @@
                 <span asp-validation-for="TranksaksiMovie.TicketAmount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn" />
+                <label asp-for="Transaction.Payment" class="control-label"></label>
+                <input asp-for="Transaction.Payment" class="form-control" />
+                <span asp-validation-for="Transaction.Payment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Buy" class="btn" />
             </div>
         </form>
     </div>
