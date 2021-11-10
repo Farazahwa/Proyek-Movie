@@ -122,7 +122,5 @@ namespace NSCMovie.Controllers
             }
             return View(movie);
         }
-
-        
     }
 }
