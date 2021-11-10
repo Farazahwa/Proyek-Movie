@@ -32,7 +32,7 @@
                             <img src="@item.Image" alt="Posters" width="130" height="200">
                         </td>
                         <td>
-                            <a style="Arial" asp-controller="Movie" asp-action="Movie" asp-route-id="1">@item.Title</a>
+                            <a style="Arial" asp-controller="Movie" asp-action="Movie" asp-route-id="@item.Id">@item.Title</a>
                             <p class="mt-4">@item.Definition</p>
                         </td>
                     </tr>                    
