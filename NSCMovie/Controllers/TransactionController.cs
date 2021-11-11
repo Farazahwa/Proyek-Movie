@@ -30,40 +30,44 @@ namespace NSCMovie.Controllers
         {
             var MovieTransactionVM = new MovieTransactionViewModel
             {
-                Movie = _context.Movies.Find(id),
-                TranksaksiMovie = _context.TranksaksiMovies.Find(id)
+                Movie = _context.Movies.Find(id),                
             };
             return View(MovieTransactionVM);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id, TicketAmount")] TranksaksiMovie movieTransaction, int id)
+        public async Task<IActionResult> Create([Bind(Prefix = "TranksaksiMovie")] AddTransactionViewModel movieTransaction, int id)
         {            
-            var dataMovie = _context.Movies.Find(id);
+            var dataMovie = _context.Movies.Find(id);            
+            var userId = _userManager.GetUserId(User);
             if(!ModelState.IsValid)
             {
                 return NotFound();
             }            
-
             var transactions = new List<TranksaksiMovie>();
             var newTransaction = new Transaction()
             {
-                Date = DateTime.UtcNow,                                                                  
+                Date = DateTime.UtcNow,         
+                Payment = movieTransaction.Payment,                                    
+                PenggunaId = userId,
             };
             var addTransaction = new TranksaksiMovie()
-            {
+            {                
                 Price = dataMovie.Price,             
-                MovieId = id,                   
+                MovieId = id, 
+                Transaction = newTransaction,
+                TicketAmount = movieTransaction.TicketAmount,                                
+                TransactionDate = DateTime.UtcNow,
+                Time = movieTransaction.Time,
             };
             
-            transactions.Add(addTransaction);
-            transactions.Add(movieTransaction);
+            transactions.Add(addTransaction);            
             newTransaction.TranksaksiMovies = transactions;
 
             _context.Transactions.Add(newTransaction);
-            _context.SaveChanges();            
-            return RedirectToAction("Movie", "MovieController");
+            await _context.SaveChangesAsync();            
+            return RedirectToAction("Index", "Movie", "movieDays");
         }
     }
 }

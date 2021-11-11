@@ -15,8 +15,14 @@ namespace NSCMovie.Models
         public virtual Transaction Transaction { get; set; }
 
         [Required]
+        [DataType(DataType.Time)]
+        public DateTime Time { get; set; }
+
+        [Required]
         public int TicketAmount { get; set; }
         public decimal Price { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime TransactionDate { get; set; }
     }
 }

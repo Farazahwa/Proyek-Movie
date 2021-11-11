@@ -13,7 +13,7 @@ namespace NSCMovie.Models
         [Required]
         public string Title { get; set; }
 
-        [Range(10000,10000)]
+        [Range(10000,50000)]
         [DataType (DataType.Currency)]
         [Column (TypeName = "decimal(18,2)")]   
         public int Price { get; set; }

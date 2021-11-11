@@ -1,0 +1,76 @@
+@model NSCMovie.Models.Movie
+@{
+    ViewData["Title"] = "Create";
+}
+
+<head>
+    <style>
+        body{
+            background-color: #C0C0C0;
+        }
+        header{            
+            color: #000000;            
+        }        
+        nav{
+            background-color: #808080;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+            color: #000000;
+        }                
+    </style>
+</head>
+<body>
+    <div>
+        <h2 class="display-4">Edit Movie</h2>
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>            
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RatingId" class="control-label"></label>
+                <input asp-for="RatingId" class="form-control" />
+                <span asp-validation-for="RatingId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Schedule" class="control-label"></label>
+                <input asp-for="Schedule" class="form-control" />
+                <span asp-validation-for="Schedule" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Days" class="control-label"></label>
+                <input asp-for="Days" class="form-control" />
+                <span asp-validation-for="Days" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Definition" class="control-label"></label>
+                <input asp-for="Definition" class="form-control" />
+                <span asp-validation-for="Definition" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Room" class="control-label"></label>
+                <input asp-for="Room" class="form-control" />
+                <span asp-validation-for="Room" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div>
+        <a asp-controller="Movie" asp-action="Index">Back</a>
+    </div>
+</body>
+
