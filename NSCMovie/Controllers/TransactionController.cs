@@ -69,5 +69,20 @@ namespace NSCMovie.Controllers
             await _context.SaveChangesAsync();            
             return RedirectToAction("Index", "Movie", "movieDays");
         }
+
+        public IActionResult History()
+        {
+            var userId = _userManager.GetUserId(User);                                       
+            var transactionId = from m in _context.Transactions
+                                where m.PenggunaId == userId
+                                select m.Id;                  
+            var transactionInt = transactionId.FirstOrDefault();
+
+            var transactionHistoryVM = new TransactionHistoryViewModel()
+            {                
+                MovieTransaction = _context.TranksaksiMovies.Where(x => x.TransactionId == transactionInt).ToList()
+            };
+            return View(transactionHistoryVM);
+        }
     }
 }

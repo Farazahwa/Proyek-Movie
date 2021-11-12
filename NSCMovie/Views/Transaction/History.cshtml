@@ -1,0 +1,39 @@
+@model NSCMovie.Models.TransactionHistoryViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<head>
+    <style>
+        body{
+            background-color: #C0C0C0;
+        }
+        header{            
+            color: #000000;            
+        }        
+        nav{
+            background-color: #808080;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+            color: #000000;
+        }                
+    </style>
+</head>
+<body>
+    <div>
+        <b>
+            <h2>History</h2>
+        </b>
+    </div>
+    <table class="table table-hover table-borderless">
+        @foreach (var item in Model.MovieTransaction)
+        {
+            <tr>
+                <td>@item.MovieId</td>
+                <td>@item.Price</td>
+                <td>@item.TicketAmount</td>
+                <td>@item.Time</td>
+                <td>@item.TransactionDate</td>
+            </tr>
+        }
+    </table>
+</body>

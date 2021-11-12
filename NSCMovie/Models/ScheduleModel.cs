@@ -6,6 +6,7 @@ namespace NSCMovie.Models
 {
     public class Schedule
     {
+        public List<MovieListViewModel> MovieLists { get; set; }
         public List<Movie> Movies { get; set; }
         public SelectList Days { get; set; }
         public string MovieDays { get; set; }
