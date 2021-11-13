@@ -36,8 +36,9 @@ namespace NSCMovie
               option.UseMySql(connectionString, serverVersion); 
               option.UseLazyLoadingProxies();
             });
-            services
+            services 
                 .AddDefaultIdentity<Buyer>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<NSCMovieDbContext>()
                 .AddDefaultTokenProviders();
             services.AddRazorPages();
