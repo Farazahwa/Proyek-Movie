@@ -22,9 +22,8 @@ namespace NSCMovie.Models
         public int RatingId{ get; set; }
         public virtual Rank Rating { get; set; }
         
-        [Required]
-        [DataType(DataType.Time)]
-        public DateTime Schedule { get; set; }
+        public int TimeScheduleId { get; set; }
+        public TimeSchedule TimeSchedule { get; set; }
 
         [Required]
         public int Room { get; set; }
