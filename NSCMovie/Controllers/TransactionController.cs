@@ -70,17 +70,16 @@ namespace NSCMovie.Controllers
             return RedirectToAction("Index", "Movie", "movieDays");
         }
 
-        public IActionResult History()
+        public async Task<IActionResult> History()
         {
             var userId = _userManager.GetUserId(User);                                       
-            var transactionId = from m in _context.Transactions
-                                where m.PenggunaId == userId
-                                select m.Id;                  
-            var transactionInt = transactionId.FirstOrDefault();
+            var transactionHistory = from m in _context.TranksaksiMovies
+                                where m.Transaction.PenggunaId == userId
+                                select m;                              
 
             var transactionHistoryVM = new TransactionHistoryViewModel()
             {                
-                MovieTransaction = _context.TranksaksiMovies.Where(x => x.TransactionId == transactionInt).ToList()
+                MovieTransaction = await transactionHistory.ToListAsync()
             };
             return View(transactionHistoryVM);
         }
