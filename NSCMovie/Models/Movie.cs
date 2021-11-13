@@ -23,7 +23,7 @@ namespace NSCMovie.Models
         public virtual Rank Rating { get; set; }
         
         public int TimeScheduleId { get; set; }
-        public TimeSchedule TimeSchedule { get; set; }
+        public virtual TimeSchedule TimeSchedule { get; set; }
 
         [Required]
         public int Room { get; set; }
