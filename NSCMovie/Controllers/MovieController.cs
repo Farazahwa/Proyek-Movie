@@ -33,13 +33,17 @@ namespace NSCMovie.Controllers
             var today = DateTime.Today.DayOfWeek.ToString();
             var movies = from m in _context.Movies
                         where m.Days == today
-                        select m;
+                        select new MovieListViewModel {
+                            Image = m.Image,
+                            Definition = m.Definition,
+                            Title = m.Title
+                        };
 
             var movieDaysVM = new Schedule
             {
                 Days = new SelectList(await daysQuery.Distinct()
                 .ToListAsync()),
-                Movies = await movies.ToListAsync()
+                MovieLists = await movies.Distinct().ToListAsync()
            };
             return View(movieDaysVM);
         }
@@ -56,11 +60,6 @@ namespace NSCMovie.Controllers
                 return NotFound();
             }
             return View(movie);
-        }
-
-        public IActionResult Transaction(int? id)
-        {        
-            return RedirectToAction("Index");
         }
     }
 }
