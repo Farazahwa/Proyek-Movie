@@ -10,6 +10,7 @@ namespace NSCMovie.Data
        public NSCMovieDbContext (DbContextOptions<NSCMovieDbContext> options) : base(options)
        {}
        public DbSet<Movie> Movies { get; set; }
+       public DbSet<TimeSchedule> TimeSchedules { get; set; }
        public DbSet<TranksaksiMovie> TranksaksiMovies { get; set; }
        public DbSet<Transaction> Transactions { get; set; }
        public DbSet<Rank> Ranks { get; set; }

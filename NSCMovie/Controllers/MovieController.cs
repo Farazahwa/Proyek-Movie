@@ -36,15 +36,16 @@ namespace NSCMovie.Controllers
                         select new MovieListViewModel {
                             Image = m.Image,
                             Definition = m.Definition,
-                            Title = m.Title
+                            Title = m.Title,
+                            Id = m.Id
                         };
 
             var movieDaysVM = new Schedule
             {
                 Days = new SelectList(await daysQuery.Distinct()
                 .ToListAsync()),
-                MovieLists = await movies.Distinct().ToListAsync()
-           };
+                MovieLists = await movies.GroupBy(x=>new {x.Title, x.Image, x.Definition}).Select(x=>x.FirstOrDefault()).ToListAsync()
+            };
             return View(movieDaysVM);
         }
 
