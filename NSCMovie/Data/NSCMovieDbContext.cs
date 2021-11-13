@@ -34,6 +34,8 @@ namespace NSCMovie.Data
             admin.PasswordHash = hasher.HashPassword(admin, "12345678");
             builder.Entity<Buyer>()
                 .HasData(admin);
+            
+            
        }
     }
 }

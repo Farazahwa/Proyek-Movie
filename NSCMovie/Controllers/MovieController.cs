@@ -44,7 +44,7 @@ namespace NSCMovie.Controllers
             {
                 Days = new SelectList(await daysQuery.Distinct()
                 .ToListAsync()),
-                MovieLists = await movies.GroupBy(x=>new {x.Title, x.Image, x.Definition}).Select(x=>x.FirstOrDefault()).ToListAsync()
+                MovieLists = movies.ToList().GroupBy(x=>new {x.Title, x.Image, x.Definition}).Select(x=>x.FirstOrDefault()).ToList()
             };
             return View(movieDaysVM);
         }
@@ -60,7 +60,12 @@ namespace NSCMovie.Controllers
             {
                 return NotFound();
             }
-            return View(movie);
+            var movies = new MovieViewModel()
+            {
+                Movie = movie,
+                TimeSchedule = _context.TimeSchedules.ToList()
+            };
+            return View(movies);
         }
     }
 }

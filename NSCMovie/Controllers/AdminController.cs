@@ -13,9 +13,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.IO;
 using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.AspNetCore.Authorization;
 
 namespace NSCMovie.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private NSCMovieDbContext _context;
@@ -64,9 +66,9 @@ namespace NSCMovie.Controllers
        }
 
         // POST: Movies/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id, bool notUsed)
+        public async Task<IActionResult> DeleteConfirmed(int? id)
         {
            var movie = await _context.Movies.FindAsync(id);
            _context.Movies.Remove(movie);
@@ -92,7 +94,7 @@ namespace NSCMovie.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Days,Definition,Image,Price,RatingId,Room,Schedule,Title")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Days,Definition,Image,Price,RatingId,Room,TimeScheduleId,Title")] Movie movie)
         {
             if (id != movie.Id)
             {
@@ -135,7 +137,7 @@ namespace NSCMovie.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Days,Definition,Image,Price,RatingId,Room,Schedule,Title")] Movie movie)
+        public async Task<IActionResult> Create([Bind("Id,Days,Definition,Image,Price,RatingId,Room,Title,TimeScheduleId")] Movie movie)
         {
             if (ModelState.IsValid)
             {

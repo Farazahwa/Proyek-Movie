@@ -1,4 +1,4 @@
-@model NSCMovie.Models.Movie
+@model NSCMovie.Models.MovieViewModel
 @{
     ViewData["Title"] = "Movie";
 }
@@ -21,32 +21,43 @@
 </head>
 <body>
     <div class="text-left">
-        <img src="@Model.Image" alt="Posters" width="200" height="300">        
+        <img src="@Model.Movie.Image" alt="Posters" width="200" height="300">        
     </div>
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>@Html.DisplayFor(model => Model.Title)</th>                                                    
+                <th>@Html.DisplayFor(model => Model.Movie.Title)</th>                                                    
             </tr>
         </thead>        
         <tbody>
             <tr>
-                <td>@Html.DisplayNameFor(model => Model.TimeSchedule)</td>
-                <td>@Html.DisplayFor(model => Model.TimeSchedule.Time)</td>                                   
-            </tr>  
-            <tr>
-                <td>@Html.DisplayNameFor(model => Model.Rating)</td>
-                <td>@Html.DisplayFor(model => Model.Rating.Rating)</td>                                            
+                <td>@Html.DisplayNameFor(model => Model.Movie.Rating)</td>
+                <td>@Html.DisplayFor(model => Model.Movie.Rating.Rating)</td>                                            
             </tr> 
             <tr>
-                <td>@Html.DisplayNameFor(model => Model.Room)</td>
-                <td>@Html.DisplayFor(model => Model.Room)</td>                                                                  
-            </tr>
+                <td>@Html.DisplayNameFor(model => Model.Movie.Room)</td>
+                <td>@Html.DisplayFor(model => Model.Movie.Room)</td>                                                                  
+            </tr>            
         </tbody>
     </table>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(x => x.TimeSchedule)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.TimeSchedule)
+            {
+                <tr>
+                    <td>@item.Time.ToShortTimeString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>    
     <div class="text-right">
-        <h6>@Html.DisplayFor(model => Model.Price)</h6>
-        <form asp-controller="Transaction" asp-action="Create" asp-route-id="@Model.Id" method="get">
+        <h6>@Html.DisplayFor(model => Model.Movie.Price)</h6>
+        <form asp-controller="Transaction" asp-action="Create" asp-route-id="@Model.Movie.Id" method="get">
             <div class="form-group">
                     <button type="submit" class="btn-primary"> Yes </button>
                     <a asp-controller="Movie" asp-action="index"> Back </a>

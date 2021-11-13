@@ -19,9 +19,11 @@ namespace NSCMovie.Models
         public int Price { get; set; }
 
 
+        [Required]
         public int RatingId{ get; set; }
         public virtual Rank Rating { get; set; }
         
+        [Required]        
         public int TimeScheduleId { get; set; }
         public virtual TimeSchedule TimeSchedule { get; set; }
 
